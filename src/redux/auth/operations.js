@@ -2,7 +2,7 @@ import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
+axios.defaults.baseURL = 'http://localhost:3001/api/';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -16,8 +16,8 @@ export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.post('/users/signup', credentials);
-      setAuthHeader(res.data.token);
+      const res = await axios.post('/users/register', credentials);
+      // setAuthHeader(res.data.token);
       toast.success(`Register successfully 🥳`);
       return res.data;
     } catch (error) {
@@ -33,7 +33,7 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await axios.post('/users/login', credentials);
-      setAuthHeader(res.data.token);
+      // setAuthHeader(res.data.token);
       toast.success(`Login successfully 🥳`);
       return res.data;
     } catch (error) {
@@ -66,7 +66,7 @@ export const refreshUser = createAsyncThunk(
 
     try {
       setAuthHeader(persistedToken);
-      const res = await axios.get('/users/current');
+      const res = await axios.post('/users/current');
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

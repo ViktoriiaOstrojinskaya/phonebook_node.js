@@ -25,10 +25,10 @@ export const ContactList = () => {
           </p>
         )}
       </ListTitle>
-      {filteredContacts.map(({ id, name, number }) => (
+      {filteredContacts.map(({ id, name, phone }) => (
         <ListItem key={id}>
           <ContactItem>
-            {name}: {number}
+            {name}: {phone}
           </ContactItem>
           <ButtonDelete
             type="button"
