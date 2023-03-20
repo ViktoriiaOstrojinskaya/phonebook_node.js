@@ -17,12 +17,14 @@ export const register = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await axios.post('/users/register', credentials);
-      // setAuthHeader(res.data.token);
+      //setAuthHeader(res.data.token);
       toast.success(`Register successfully 🥳`);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        toast.error(`This user is already registered, please use the login 🤭`)
+        toast.error(
+          `Something wrong, check your fields. If you have already registered, please use the login 🤭`
+        )
       );
     }
   }
