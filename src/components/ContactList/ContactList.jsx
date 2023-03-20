@@ -25,14 +25,14 @@ export const ContactList = () => {
           </p>
         )}
       </ListTitle>
-      {filteredContacts.map(({ id, name, phone }) => (
-        <ListItem key={id}>
+      {filteredContacts.map(({ _id, name, phone }) => (
+        <ListItem key={_id}>
           <ContactItem>
             {name}: {phone}
           </ContactItem>
           <ButtonDelete
             type="button"
-            onClick={() => dispatch(deleteContact(id))}
+            onClick={() => dispatch(deleteContact(_id))}
           >
             Delete
           </ButtonDelete>
